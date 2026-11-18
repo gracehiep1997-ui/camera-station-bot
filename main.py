@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 # Thông tin cấu hình từ shop Camera Station
 PAGE_ACCESS_TOKEN = "EAAeZApvnscPUBTJMuyyRZBlGBGJjkaY3XhySv5o30sJFCpLeYUOVIIVHdZBWkfVtn3tE4oVxE7WB74IJxT0WJ1NLZC9dax0v5cWvtHq4NN7anrvZClldC9j9nWFuoaKOJd3W64ksvUlb6hae4v2EBAE4CFtvSG1zQI89N5lnDSBAmZC1aVrQ9NdKOHb0ZCIVvNM4NqQTgZDZD"
-VERIFY_TOKEN = "camerastation2026" # Mật khẩu xác minh webhook do Hiệp tự đặt
+VERIFY_TOKEN = "camerastation_new_2026" # Token mới để tránh cache của Facebook
 APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwREgD6Dry-KFKHIh8AmwhzfL8yNDISUKHhbJC-U4KBBpur3cc6kIFUttNOyaTbnDsn-Q/exec"
 
 @app.route("/", methods=["GET"])
@@ -40,8 +40,7 @@ def handle_webhook():
                 if messaging_event.get("message") and messaging_event["message"].get("text"):
                     message_text = messaging_event["message"]["text"]
                     
-                    # Gọi sang Google Sheets Apps Script để check giá/kho hoặc xử lý logic
-                    # Ở đây bot sẽ phản hồi tự động mẫu chào mừng và check giá cơ bản
+                    # Phản hồi tự động tư vấn và báo giá cơ bản cho shop
                     reply_text = f"Chào bạn! Camera Station đã nhận được tin nhắn: '{message_text}'. Shop chuyên cho thuê các dòng Fujifilm (X-S20, X-S10, X-M5) và Canon (R50, 600D) thủ tục nhanh gọn chỉ cần CCCD/VNeID + cọc ạ!"
                     
                     # Gửi tin nhắn trả lời khách qua Facebook Messenger API
